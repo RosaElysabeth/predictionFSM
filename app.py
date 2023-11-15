@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 import pandas as pd
 import numpy as np 
@@ -56,7 +55,7 @@ def main():
     # Bouton pour effectuer la prédiction
     if st.button("Prédire"):
         # Prétraitement des fonctionnalités
-        features = pd.DataFrame({"DATE": [year], "REGION": [region], "Situation_Surpoids": [0], "Situation_MC": [0], "Situation_MA": [0]})  # Adapté à votre structure de données
+        features = pd.DataFrame({"DATE": [year], "REGION": [region], "Situation_Surpoids": [0], "Situation_MC": [0], "Situation_MA": [0]}) 
     
         # Faire la prédiction
         prediction = predire(modele, features)
