@@ -6,7 +6,7 @@ import shap
 
 def charger_modele():
     # Chargement des données
-    data = pd.read_excel('etat_securite.xlsx') 
+    data = pd.read_excel('./etat_securite.xlsx') 
     
     df = data.copy()
     

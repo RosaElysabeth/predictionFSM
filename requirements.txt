@@ -3,3 +3,4 @@ shap==0.43.0
 streamlit==1.28.2
 pandas==1.5.3
 numpy==1.24.3
+openpyxl==3.0.10
