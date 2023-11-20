@@ -44,8 +44,9 @@ def predire(modele, features):
 def calculer_shap(modele, features):
     _, explainer = modele
     features = features.apply(pd.to_numeric, errors='coerce')
-
     # Calcul des valeurs SHAP
     shap_values = explainer.shap_values(features)
+    
+    #print(shap_values)
 
     return shap_values
