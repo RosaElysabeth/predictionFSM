@@ -9,7 +9,7 @@ import shap
 def charger_modele():
     # Chargement des données
     print("Chargement des données...")
-    data = pd.read_excel('./etat_securite_test.xlsx')
+    data = pd.read_excel('./etat_securite.xlsx')
     print("Données chargées avec succès.")
     
     df = data.copy()
@@ -115,7 +115,7 @@ def interpret_shap(feature_names, shap_values, region_name):
 
 
 def main():
-    st.title("Prédiction de la Sécurité Alimentaire")
+    st.title("Prédiction des phénomènes")
 
     # Charger le modèle
     modele, explainer, X_train, y_train = charger_modele()
@@ -139,35 +139,105 @@ def main():
     # Bouton pour effectuer la prédiction
     if st.button("Prédire"):
         # Prétraitement des fonctionnalités (excluant "Situation_Surpoids")
-        features = pd.DataFrame({
+        features1 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
+            "TIP": [25],
+            "TMC": [48], 
+            "TMA": [37],
             "Situation_Surpoids": [2],
-            "Situation_MC": [1],
+            "Situation_MC": [1], 
             "Situation_MA": [4],
+            "Vitesse_vent_maximale": [0],
+            "Vitesse_terre_maximale": [0],
+            "Diametre": [0],
+            "Proportion_femmes_salariees": [0],
+            "Ratio_freq_secondaire_2nd_cycle": [0],
+            "Ratio_freq_secondaire_1er_cycle": [0],
+            "Ratio_freq_primaire": [0],
+            "Taux_alphabetisation_15_ans_et_plus": [0],
+            "Taux_achevement_primaire": [0],
+            "TNS_primaire": [0],
+            "Proportion_citadins_taudis": [0],
+            "Proportion_enfants_dormant_moustiquaires": [0],
+            "Proportion_15_24_ans_connaissance_VIH_SIDA": [0],
+        })
+        features2 = pd.DataFrame({
+            "DATE": [year],
+            "REGION": [region_numeric],
+            "TIP": [47],
+            "TMC": [5], 
+            "TMA": [27],
+            "Situation_Surpoids": [2],
+            "Situation_MC": [1], 
+            "Situation_MA": [4],
+            "Vitesse_vent_maximale": [0],
+            "Vitesse_terre_maximale": [0],
+            "Diametre": [0],
+            "Proportion_femmes_salariees": [0],
+            "Ratio_freq_secondaire_2nd_cycle": [0],
+            "Ratio_freq_secondaire_1er_cycle": [0],
+            "Ratio_freq_primaire": [0],
+            "Taux_alphabetisation_15_ans_et_plus": [0],
+            "Taux_achevement_primaire": [0],
+            "TNS_primaire": [0],
+            "Proportion_citadins_taudis": [0],
+            "Proportion_enfants_dormant_moustiquaires": [0],
+            "Proportion_15_24_ans_connaissance_VIH_SIDA": [0],
+        })
+        features3 = pd.DataFrame({
+            "DATE": [year],
+            "REGION": [region_numeric],
+            "TIP": [32],
+            "TMC": [20], 
+            "TMA": [49],
+            "Situation_Surpoids": [2],
+            "Situation_MC": [1], 
+            "Situation_MA": [4],
+            "Vitesse_vent_maximale": [0],
+            "Vitesse_terre_maximale": [0],
+            "Diametre": [0],
+            "Proportion_femmes_salariees": [0],
+            "Ratio_freq_secondaire_2nd_cycle": [0],
+            "Ratio_freq_secondaire_1er_cycle": [0],
+            "Ratio_freq_primaire": [0],
+            "Taux_alphabetisation_15_ans_et_plus": [0],
+            "Taux_achevement_primaire": [0],
+            "TNS_primaire": [0],
+            "Proportion_citadins_taudis": [0],
+            "Proportion_enfants_dormant_moustiquaires": [0],
+            "Proportion_15_24_ans_connaissance_VIH_SIDA": [0],
         })
         
         # Utiliser les noms de colonnes de X_train pour garantir la cohérence
-        features.columns = X_train.columns
+        features1.columns = X_train.columns
 
         # Faire la prédiction
-        prediction = predire(modele, features)
+        prediction1 = predire(modele, features1)
+        prediction2 = predire(modele, features2)
+        prediction3 = predire(modele, features3)
 
         # Afficher la prédiction
-        st.write(f"Prédiction de la Classe: {prediction}")
+        st.write(f"Prédiction de l'insuffisance pondérale : {prediction1}")
+        st.write(f"Prédiction de la malnutrition chronique : {prediction2}")
+        st.write(f"Prédiction de la malnutrition aiguë : {prediction3}")
 
         # Calculer et afficher les valeurs SHAP
-        shap_values = calculer_shap((modele, explainer), features)
+        shap_values = calculer_shap((modele, explainer), features1)
 
         # Obtenir l'ordre décroissant des indices des fonctionnalités par impact
         feature_order = list(reversed(np.argsort(shap_values[0])))
 
         print(f"Debug - Feature Order: {feature_order}")
+        
+        #Valeurs SHAP
+        st.write("Valeurs SHAP :")
+        st.write(f"{shap_values}")
 
         # Afficher les résultats SHAP avec des commentaires adaptés aux nutritionnistes
         st.write("Interprétation des Valeurs SHAP :")
 
-        feature_names = features.columns  # Extraire les noms des fonctionnalités à l'extérieur de la boucle
+        feature_names = features1.columns  # Extraire les noms des fonctionnalités à l'extérieur de la boucle
 
         for feature_index in feature_order[0]:
             if 0 <= feature_index < len(shap_values[0]):
