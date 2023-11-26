@@ -142,7 +142,7 @@ def main():
         features1 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [35],
+            "TIP": [50],
             "TMC": [11], 
             "TMA": [10],
             "Situation_Surpoids": [2],
