@@ -48,7 +48,7 @@ def charger_modele():
 
 def predire(modele, features):
     modele_securite_alimentaire = modele
-    prediction = modele_securite_alimentaire.predict(features)[25]
+    prediction = modele_securite_alimentaire.predict(features)[0]
     return prediction
 
 def calculer_shap(modele, features):
@@ -226,7 +226,7 @@ def main():
         shap_values = calculer_shap((modele, explainer), features1)
 
         # Obtenir l'ordre décroissant des indices des fonctionnalités par impact
-        feature_order = list(reversed(np.argsort(shap_values[25])))
+        feature_order = list(reversed(np.argsort(shap_values[0])))
 
         print(f"Debug - Feature Order: {feature_order}")
         
@@ -239,10 +239,10 @@ def main():
 
         feature_names = features1.columns  # Extraire les noms des fonctionnalités à l'extérieur de la boucle
 
-        for feature_index in feature_order[25]:
-            if 0 <= feature_index < len(shap_values[25]):
+        for feature_index in feature_order[0]:
+            if 0 <= feature_index < len(shap_values[0]):
                 feature_name = feature_names[feature_index]  # Utiliser le nom de la fonctionnalité ici
-                shap_value = shap_values[25][feature_index]
+                shap_value = shap_values[0][feature_index]
 
                 print(f"Debug - Feature Index: {feature_index}, Feature Name: {feature_name}, SHAP Value Shape: {shap_value.shape}")
 
