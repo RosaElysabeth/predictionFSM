@@ -48,7 +48,7 @@ def charger_modele():
 
 def predire(modele, features):
     modele_securite_alimentaire = modele
-    prediction = modele_securite_alimentaire.predict(features)[0]
+    prediction = modele_securite_alimentaire.predict(features)[25]
     return prediction
 
 def calculer_shap(modele, features):
@@ -142,71 +142,71 @@ def main():
         features1 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [25],
-            "TMC": [48], 
-            "TMA": [37],
+            "TIP": [10],
+            "TMC": [11], 
+            "TMA": [10],
             "Situation_Surpoids": [2],
             "Situation_MC": [1], 
             "Situation_MA": [4],
-            "Vitesse_vent_maximale": [0],
-            "Vitesse_terre_maximale": [0],
-            "Diametre": [0],
-            "Proportion_femmes_salariees": [0],
-            "Ratio_freq_secondaire_2nd_cycle": [0],
-            "Ratio_freq_secondaire_1er_cycle": [0],
-            "Ratio_freq_primaire": [0],
-            "Taux_alphabetisation_15_ans_et_plus": [0],
-            "Taux_achevement_primaire": [0],
-            "TNS_primaire": [0],
-            "Proportion_citadins_taudis": [0],
-            "Proportion_enfants_dormant_moustiquaires": [0],
-            "Proportion_15_24_ans_connaissance_VIH_SIDA": [0],
+            "Vitesse_vent_maximale": [25],
+            "Vitesse_terre_maximale": [25],
+            "Diametre": [25],
+            "Proportion_femmes_salariees": [25],
+            "Ratio_freq_secondaire_2nd_cycle": [25],
+            "Ratio_freq_secondaire_1er_cycle": [25],
+            "Ratio_freq_primaire": [25],
+            "Taux_alphabetisation_15_ans_et_plus": [25],
+            "Taux_achevement_primaire": [25],
+            "TNS_primaire": [25],
+            "Proportion_citadins_taudis": [25],
+            "Proportion_enfants_dormant_moustiquaires": [25],
+            "Proportion_15_24_ans_connaissance_VIH_SIDA": [25],
         })
         features2 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [47],
-            "TMC": [5], 
-            "TMA": [27],
+            "TIP": [19],
+            "TMC": [15], 
+            "TMA": [16],
             "Situation_Surpoids": [2],
             "Situation_MC": [1], 
             "Situation_MA": [4],
-            "Vitesse_vent_maximale": [0],
-            "Vitesse_terre_maximale": [0],
-            "Diametre": [0],
-            "Proportion_femmes_salariees": [0],
-            "Ratio_freq_secondaire_2nd_cycle": [0],
-            "Ratio_freq_secondaire_1er_cycle": [0],
-            "Ratio_freq_primaire": [0],
-            "Taux_alphabetisation_15_ans_et_plus": [0],
-            "Taux_achevement_primaire": [0],
-            "TNS_primaire": [0],
-            "Proportion_citadins_taudis": [0],
-            "Proportion_enfants_dormant_moustiquaires": [0],
-            "Proportion_15_24_ans_connaissance_VIH_SIDA": [0],
+            "Vitesse_vent_maximale": [25],
+            "Vitesse_terre_maximale": [25],
+            "Diametre": [25],
+            "Proportion_femmes_salariees": [25],
+            "Ratio_freq_secondaire_2nd_cycle": [25],
+            "Ratio_freq_secondaire_1er_cycle": [25],
+            "Ratio_freq_primaire": [25],
+            "Taux_alphabetisation_15_ans_et_plus": [25],
+            "Taux_achevement_primaire": [25],
+            "TNS_primaire": [25],
+            "Proportion_citadins_taudis": [25],
+            "Proportion_enfants_dormant_moustiquaires": [25],
+            "Proportion_15_24_ans_connaissance_VIH_SIDA": [25],
         })
         features3 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [32],
-            "TMC": [20], 
-            "TMA": [49],
+            "TIP": [6],
+            "TMC": [5], 
+            "TMA": [7],
             "Situation_Surpoids": [2],
             "Situation_MC": [1], 
             "Situation_MA": [4],
-            "Vitesse_vent_maximale": [0],
-            "Vitesse_terre_maximale": [0],
-            "Diametre": [0],
-            "Proportion_femmes_salariees": [0],
-            "Ratio_freq_secondaire_2nd_cycle": [0],
-            "Ratio_freq_secondaire_1er_cycle": [0],
-            "Ratio_freq_primaire": [0],
-            "Taux_alphabetisation_15_ans_et_plus": [0],
-            "Taux_achevement_primaire": [0],
-            "TNS_primaire": [0],
-            "Proportion_citadins_taudis": [0],
-            "Proportion_enfants_dormant_moustiquaires": [0],
-            "Proportion_15_24_ans_connaissance_VIH_SIDA": [0],
+            "Vitesse_vent_maximale": [25],
+            "Vitesse_terre_maximale": [25],
+            "Diametre": [25],
+            "Proportion_femmes_salariees": [25],
+            "Ratio_freq_secondaire_2nd_cycle": [25],
+            "Ratio_freq_secondaire_1er_cycle": [25],
+            "Ratio_freq_primaire": [25],
+            "Taux_alphabetisation_15_ans_et_plus": [25],
+            "Taux_achevement_primaire": [25],
+            "TNS_primaire": [25],
+            "Proportion_citadins_taudis": [25],
+            "Proportion_enfants_dormant_moustiquaires": [25],
+            "Proportion_15_24_ans_connaissance_VIH_SIDA": [25],
         })
         
         # Utiliser les noms de colonnes de X_train pour garantir la cohérence
@@ -226,7 +226,7 @@ def main():
         shap_values = calculer_shap((modele, explainer), features1)
 
         # Obtenir l'ordre décroissant des indices des fonctionnalités par impact
-        feature_order = list(reversed(np.argsort(shap_values[0])))
+        feature_order = list(reversed(np.argsort(shap_values[25])))
 
         print(f"Debug - Feature Order: {feature_order}")
         
@@ -239,10 +239,10 @@ def main():
 
         feature_names = features1.columns  # Extraire les noms des fonctionnalités à l'extérieur de la boucle
 
-        for feature_index in feature_order[0]:
-            if 0 <= feature_index < len(shap_values[0]):
+        for feature_index in feature_order[25]:
+            if 0 <= feature_index < len(shap_values[25]):
                 feature_name = feature_names[feature_index]  # Utiliser le nom de la fonctionnalité ici
-                shap_value = shap_values[0][feature_index]
+                shap_value = shap_values[25][feature_index]
 
                 print(f"Debug - Feature Index: {feature_index}, Feature Name: {feature_name}, SHAP Value Shape: {shap_value.shape}")
 
