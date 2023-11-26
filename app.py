@@ -142,7 +142,7 @@ def main():
         features1 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [10],
+            "TIP": [35],
             "TMC": [11], 
             "TMA": [10],
             "Situation_Surpoids": [2],
@@ -165,9 +165,9 @@ def main():
         features2 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [19],
-            "TMC": [15], 
-            "TMA": [16],
+            "TIP": [25],
+            "TMC": [39], 
+            "TMA": [42],
             "Situation_Surpoids": [2],
             "Situation_MC": [1], 
             "Situation_MA": [4],
@@ -188,7 +188,7 @@ def main():
         features3 = pd.DataFrame({
             "DATE": [year],
             "REGION": [region_numeric],
-            "TIP": [6],
+            "TIP": [10],
             "TMC": [5], 
             "TMA": [7],
             "Situation_Surpoids": [2],
